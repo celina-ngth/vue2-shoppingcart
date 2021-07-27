@@ -26,7 +26,7 @@
           <div class="quantity">
             Quantité :
             <button @click="decreaseQuantity(item.reference)">-</button>
-            <p>{{ item.qty || 0 }}</p>
+            <p>{{ item.qty }}</p>
             <button @click="increaseQuantity(item.reference)">+</button>
           </div>
           <div>
@@ -75,11 +75,11 @@ export default {
       this.confirmModal = true;
       this.itemToRemove = reference;
     },
-    cancelRemove() {
-      this.confirmModal = false;
-    },
     remove() {
       this.$store.dispatch("removeFromCart", this.itemToRemove);
+      this.confirmModal = false;
+    },
+    cancelRemove() {
       this.confirmModal = false;
     },
     increaseQuantity(reference) {
@@ -137,7 +137,6 @@ button {
   justify-content: space-between;
   width: auto;
 }
-
 @media (min-width: 360px) and (max-width: 1024px) {
   .card-info {
     display: flex;

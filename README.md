@@ -25,7 +25,7 @@ npm run lint
 npm install -g json-server
 ```
 
-### Run JSON-SERVER 
+### Run JSON Server 
 ```
 json-server --watch products.json
 ```

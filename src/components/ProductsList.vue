@@ -28,7 +28,6 @@ export default {
   props: {
     products: { type: Object },
   },
-  mounted() {},
   computed: {
     qty() {
       return this.$store.state.qty;

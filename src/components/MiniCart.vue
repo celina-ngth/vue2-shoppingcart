@@ -39,9 +39,6 @@ export default {
   props: {
     cart: { type: Object },
   },
-  data() {
-    return {};
-  },
   computed: {
     total() {
       return this.$store.state.total;

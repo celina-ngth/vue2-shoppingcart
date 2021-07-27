@@ -85,11 +85,6 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
-button {
-  width: fit-content;
-  padding: 10px;
-  margin: 10px 0;
-}
 .column {
   flex-direction: column;
   justify-content: center;
@@ -108,6 +103,11 @@ button {
   position: absolute;
   right: 0;
   top: 30px;
+}
+button {
+  width: fit-content;
+  padding: 10px;
+  margin: 10px 0;
 }
 
 @media (min-width: 360px) and (max-width: 1024px) {

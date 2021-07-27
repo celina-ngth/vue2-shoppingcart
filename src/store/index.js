@@ -21,6 +21,7 @@ const actions = {
         commit('GET_PRODUCTS', response.data)
       })
   },
+
   getCart({ commit }) {
     axios.get('http://localhost:3000/cart')
       .then(response => {
@@ -28,6 +29,7 @@ const actions = {
         commit('total', response.data)
       })
   },
+
   addProductToCart({ commit }, product) {
     commit('ADD_TO_CART', product)
     axios.put('http://localhost:3000/cart/', state.cart)
@@ -37,6 +39,7 @@ const actions = {
         state.qty = 1
       })
   },
+
   removeFromCart({ commit }, reference) {
     commit('DELETE_FROM_CART', reference)
     axios.put('http://localhost:3000/cart/', state.cart)
@@ -54,6 +57,7 @@ const actions = {
         commit('total', response.data)
       })
   },
+
   decrementQuantity({ commit }, productId) {
     commit("DECREMENT", productId);
     axios.put('http://localhost:3000/cart/', state.cart)
@@ -65,17 +69,22 @@ const actions = {
 }
 
 const mutations = {
+  // Init products
   GET_PRODUCTS(state, products) {
     state.products = products
   },
+
+  // Init cart
   GET_CART(state, products) {
     state.cart = products
   },
+
+  // Add product to cart
   ADD_TO_CART(state, product) {
     // Check if cart is empty
     if (Object.keys(state.cart).length != 0) {
       for (const [key, value] of Object.entries(state.cart)) {
-        // Check if product already in cart
+        // Check if product already in cart, then change quantity 
         if (key === product.reference) {
           product.qty = value.qty + state.qty
           state.cart[key].qty = product.qty
@@ -87,19 +96,27 @@ const mutations = {
       state.cart[product.reference] = product
     }
   },
+
+  // Delete item from cart
   DELETE_FROM_CART(state, reference) {
     delete state.cart[reference];
   },
+
+  // Increment quantity of a product
   INCREMENT(state, reference) {
     for (let key in state.cart) {
       if (key === reference) state.cart[key].qty += 1
     }
   },
+
+  // Decrement quantity of a product
   DECREMENT(state, reference) {
     for (let key in state.cart) {
       if (key === reference && ((state.cart[key].qty - 1)) != 0) state.cart[key].qty -= 1
     }
   },
+
+  // Calculate total
   total() {
     let totals = 0
     let nb = 0
@@ -117,7 +134,6 @@ const mutations = {
   },
 }
 
-//export store module
 export default new Vuex.Store({
   state,
   getters,

@@ -1,5 +1,5 @@
 
-<template id="modal">
+<template>
   <div class="modal">
     <div class="modal-window">
       <h3>Souhaitez-vous retirer ce produit du panier ?</h3>
@@ -10,6 +10,20 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "ConfirmModal",
+  methods: {
+    onConfirm() {
+      this.$emit("confirm");
+    },
+    onCancel() {
+      this.$emit("cancel");
+    },
+  },
+};
+</script>
 
 <style scoped>
 .modal {
@@ -47,17 +61,3 @@ button {
   cursor: pointer;
 }
 </style>
-
-<script>
-export default {
-  name: "ConfirmModal",
-  methods: {
-    onConfirm() {
-      this.$emit("confirm");
-    },
-    onCancel() {
-      this.$emit("cancel");
-    },
-  },
-};
-</script>
